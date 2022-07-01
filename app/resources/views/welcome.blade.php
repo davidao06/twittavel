@@ -20,13 +20,23 @@
             }
         </style>
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            <form action="">
-                <input type="text" name="username" required>
-                <input type="password" name="password" required>
-                <button type="submit">Login</button>
-            </form>    
+    <body class="antialiased" style="display:grid;place-items:center;height:100vh;">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
         </div>
+        @endif
+        <form method="post" action="{{route('auth.user')}}" style="width:fit-content;display:flex;flex-direction:column;padding:2rem 2rem;gap:1rem;border-radius:24px;">
+            @csrf
+            <label for="username" style="font-size:20pt;">Username</label>
+            <input type="text" name="username" id="username" >
+            <label for="pass" style="font-size:20pt;">Password</label>
+            <input type="password" name="password" id="pass" >
+            <button type="submit">Login</button>
+        </form>
     </body>
 </html>
