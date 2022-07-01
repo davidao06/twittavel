@@ -1,0 +1,7 @@
+body {
+    background-color:black;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction:row;
+    gap:2rem;
+}
