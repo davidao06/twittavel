@@ -21,6 +21,10 @@
             </div>
 
             <div class="messageContainer">
+                <form action="{{route('main.page')}}" method="post">
+                    <textarea name="messageInput" class="inputMessage"></textarea>
+                    <button type="submit">Add message</button>
+                </form>
                 <div class="message">
                     <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
                 </div>
