@@ -21,25 +21,17 @@
             </div>
 
             <div class="messageContainer">
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
+                <form action="{{route('add.comment')}}" method="post">
+                    @csrf
+                    <textarea name="messageInput" class="inputMessage"></textarea>
+                    <button type="submit">Add message</button>
+                </form>
 
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
-
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
-
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
-
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
+                @foreach (App\Models\Message::where('user_id',Auth::user()->id)->get() as $message)
+                    <div class="message">
+                        <span>{{$message->messageText}}</span>
+                    </div>
+                @endforeach
             </div>
         </div>
     </body>
