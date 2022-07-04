@@ -17,8 +17,10 @@ use App\Http\Controllers\MessageController;
 
 Route::get('/', [UserController::class,'login'])->name('main.page');
 Route::post('/auth', [UserController::class,'auth'])->name('auth.user');
-Route::get('/logout',[UserController::class,'logout'])->name('logout.user');
+Route::post('/logout',[UserController::class,'logout'])->name('logout.user');
 Route::post('/addComment',[MessageController::class,'addComment'])->name('add.comment');
-Route::get('/delComment/{id}',[MessageController::class,'delComment'])->name('del.comment');
-Route::get('/upComment/{id}',[MessageController::class,'upComment'])->name('up.comment');
-Route::get('/downComment/{id}',[MessageController::class,'downComment'])->name('down.comment');
+Route::post('/delComment/{id}',[MessageController::class,'delComment'])->name('del.comment');
+Route::post('/upComment/{id}',[MessageController::class,'upComment'])->name('up.comment');
+Route::post('/downComment/{id}',[MessageController::class,'downComment'])->name('down.comment');
+Route::post("/changePassword",[UserController::class,'changePass'])->name('change.passwordPost');
+Route::get("/changePassword",[UserController::class,'showChangePass'])->name('change.passwordGet');

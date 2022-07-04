@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,9 +38,48 @@ class UserController extends Controller
         }
     }
 
-    public function logout() {
+    public function logout(Request $request) {
         Auth::logout();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
         return redirect()->route('main.page');
+    }
+
+    public function showChangePass()
+    {
+        return view('change_password');
+    }
+
+    public function changePass(Request $request)
+    {
+
+        $this->validate($request,[
+            'oldPass' => 'required',
+            'newPass' => 'required'
+        ]);
+
+        if (!(Hash::check($request->get('oldPass'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password.");
+        }
+
+        if(strcmp($request->get('oldPass'), $request->get('newPass')) == 0){
+            // Current password and new password same
+            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+        }
+
+        if(strcmp($request->get('newPass'), $request->get('confPass')) != 0) {
+            return redirect()->back()->with("error","New and Confirmed Password are different.");
+        }
+
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('newPass'));
+        $user->save();
+
+        return redirect()->back()->with("success","Password successfully changed!");
     }
 
 
