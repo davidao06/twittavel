@@ -19,4 +19,10 @@ class MessageController extends Controller
 
         return redirect()->route('main.page');
     }
+
+    public function delComment($id)
+    {
+        Message::destroy($id);
+        return redirect()->route('main.page');
+    }
 }

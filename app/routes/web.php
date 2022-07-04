@@ -18,4 +18,5 @@ use App\Http\Controllers\MessageController;
 Route::get('/', [UserController::class,'login'])->name('main.page');
 Route::post('/auth', [UserController::class,'auth'])->name('auth.user');
 Route::get('/logout',[UserController::class,'logout'])->name('logout.user');
-Route::post('/',[MessageController::class,'addComment'])->name('add.comment');
+Route::post('/addComment',[MessageController::class,'addComment'])->name('add.comment');
+Route::get('/delComment/{id}',[MessageController::class,'delComment'])->name('del.comment');

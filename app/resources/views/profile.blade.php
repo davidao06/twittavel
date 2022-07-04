@@ -21,15 +21,20 @@
             </div>
 
             <div class="messageContainer">
-                <form action="{{route('add.comment')}}" method="post">
+                <form action="{{route('add.comment')}}" method="post"
+                class="formText">
                     @csrf
                     <textarea name="messageInput" class="inputMessage"></textarea>
-                    <button type="submit">Add message</button>
+                    <button type="submit" class="submitMessage">Add message</button>
                 </form>
 
                 @foreach (App\Models\Message::where('user_id',Auth::user()->id)->get() as $message)
                     <div class="message">
                         <span>{{$message->messageText}}</span>
+                        <form action="{{route('del.comment',['id' => $message->id])}}" method="GET">
+                            @csrf
+                            <button type="submit" class="delComment">X</button>
+                        </form>
                     </div>
                 @endforeach
             </div>
