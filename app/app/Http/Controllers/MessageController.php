@@ -10,6 +10,8 @@ class MessageController extends Controller
 {
     public function addComment(Request $request)
     {
+        Message::where('user_id',Auth::user()->id)->increment('position');
+
         $message = new Message;
 
         $message->messageText = $request->messageInput;
@@ -22,7 +24,19 @@ class MessageController extends Controller
 
     public function delComment($id)
     {
+        $message = Message::find($id);
+        Message::where('position','>',$message->position)->decrement('position');
         Message::destroy($id);
+        return redirect()->route('main.page');
+    }
+
+    public function upComment($id)
+    {
+        return redirect()->route('main.page');
+    }
+
+    public function downComment($id)
+    {
         return redirect()->route('main.page');
     }
 }

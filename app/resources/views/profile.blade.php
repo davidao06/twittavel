@@ -28,13 +28,24 @@
                     <button type="submit" class="submitMessage">Add message</button>
                 </form>
 
-                @foreach (App\Models\Message::where('user_id',Auth::user()->id)->get() as $message)
+                @foreach (App\Models\Message::where('user_id',Auth::user()->id)->orderBy('position')->get() as $message)
                     <div class="message">
+                        <span class="positionMessage">{{$message->position}}</span>
                         <span>{{$message->messageText}}</span>
-                        <form action="{{route('del.comment',['id' => $message->id])}}" method="GET">
-                            @csrf
-                            <button type="submit" class="delComment">X</button>
-                        </form>
+                        <div class="messageButtons">
+                            <form action="{{route('up.comment',['id' => $message->id])}}" method="GET">
+                                @csrf
+                                <button type="submit" class="messageButton">+1</button>
+                            </form>
+                            <form action="{{route('down.comment',['id' => $message->id])}}" method="GET">
+                                @csrf
+                                <button type="submit" class="messageButton">-1</button>
+                            </form>
+                            <form action="{{route('del.comment',['id' => $message->id])}}" method="GET">
+                                @csrf
+                                <button type="submit" class="messageButton">X</button>
+                            </form>
+                        </div>
                     </div>
                 @endforeach
             </div>
