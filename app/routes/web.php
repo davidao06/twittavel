@@ -20,3 +20,5 @@ Route::post('/auth', [UserController::class,'auth'])->name('auth.user');
 Route::get('/logout',[UserController::class,'logout'])->name('logout.user');
 Route::post('/addComment',[MessageController::class,'addComment'])->name('add.comment');
 Route::get('/delComment/{id}',[MessageController::class,'delComment'])->name('del.comment');
+Route::get('/upComment/{id}',[MessageController::class,'upComment'])->name('up.comment');
+Route::get('/downComment/{id}',[MessageController::class,'downComment'])->name('down.comment');
