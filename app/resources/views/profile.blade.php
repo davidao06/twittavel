@@ -35,11 +35,11 @@
                         <div class="messageButtons">
                             <form action="{{route('up.comment',['id' => $message->id])}}" method="GET">
                                 @csrf
-                                <button type="submit" class="messageButton">+1</button>
+                                <button type="submit" class="messageButton">&#8593</button>
                             </form>
                             <form action="{{route('down.comment',['id' => $message->id])}}" method="GET">
                                 @csrf
-                                <button type="submit" class="messageButton">-1</button>
+                                <button type="submit" class="messageButton">&#8595</button>
                             </form>
                             <form action="{{route('del.comment',['id' => $message->id])}}" method="GET">
                                 @csrf

@@ -32,11 +32,29 @@ class MessageController extends Controller
 
     public function upComment($id)
     {
+        $message = Message::find($id);
+
+        if($message->position > 1) {
+            Message::where('position',$message->position - 1)->increment('position');
+
+            $message->position--;
+            $message->save();
+        }
+
         return redirect()->route('main.page');
     }
 
     public function downComment($id)
     {
+        $message = Message::find($id);
+
+        if ($message->position < Message::max('position')) {
+            Message::where('position',$message->position + 1)->decrement('position');
+
+            $message->position++;
+            $message->save();
+        }
+
         return redirect()->route('main.page');
     }
 }
