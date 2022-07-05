@@ -16,11 +16,11 @@
                 <span class="welcomeProfile">Olá {{Auth::user()->username}}!</span>
                 <form action="{{route('change.passwordGet')}}" method="get">
                     @csrf
-                    <input type="submit" value="ChangePassword" class="logoutButton">
+                    <input type="submit" value="ChangePassword" class="topButton">
                 </form>
                 <form action="{{route('logout.user')}}" method="post">
                     @csrf
-                    <input type="submit" value="Logout" class="logoutButton">
+                    <input type="submit" value="Logout" class="topButton">
                 </form>
             </div>
 
