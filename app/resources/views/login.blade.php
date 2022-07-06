@@ -17,10 +17,12 @@
             <span class="loginText">LOGIN</span>
             <label for="username" class="loginLabels">Username</label>
             <div class="loginError"><span>{{$errors->first('username')}}</span></div>
-            <input type="text" name="username" id="username" placeholder="Insira o seu username" class="loginInput" autocomplete="off">
+            <input type="text" name="username" id="username"
+                placeholder="Insira o seu username" class="loginInput" autocomplete="off">
             <label for="pass" class="loginLabels">Password</label>
             <div class="loginError"><span>{{$errors->first('password')}}</span></div>
-            <input type="password" name="password" id="pass" placeholder="Insira a sua password" class="loginInput">
+            <input type="password" name="password" id="pass"
+                placeholder="Insira a sua password" class="loginInput">
             <button type="submit" class="loginSubmit">Login</button>
         </form>
         <div class="loginError"><span>{{$errors->first('failedLogin')}}</span></div>

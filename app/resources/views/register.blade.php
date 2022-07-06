@@ -20,11 +20,14 @@
             @csrf
             <span class="registerText">REGISTER</span>
             <label for="username" class="registerLabels">Username</label>
-            <input type="text" name="username" id="username" placeholder="Insira o seu username" class="registerInput" autocomplete="off" required>
+            <input type="text" name="username" id="username"
+                placeholder="Insira o seu username" class="registerInput" autocomplete="off" required>
             <label for="pass" class="registerLabels">Password</label>
-            <input type="password" name="password" id="pass" placeholder="Insira a sua password" class="registerInput" required>
+            <input type="password" name="password" id="pass"
+                placeholder="Insira a sua password" class="registerInput" required>
             <label for="confPass" class="registerLabels">Confirm Password</label>
-            <input type="password" name="confPass" id="confPass" placeholder="Insira a sua password novamente" class="registerInput" required>
+            <input type="password" name="confPass" id="confPass"
+                placeholder="Insira a sua password novamente" class="registerInput" required>
             <button type="submit" class="registerSubmit">Register</button>
         </form>
         <div class="registerError"><span>{{$errors->first('failedRegister')}}</span></div>

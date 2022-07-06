@@ -49,7 +49,10 @@ class UserController extends Controller
 
     public function showChangePass()
     {
-        return view('change_password');
+        if (Auth::check()) {
+            return view('change_password');
+        }
+        else return redirect()->route('main.page');
     }
 
     public function changePass(Request $request)
@@ -61,15 +64,18 @@ class UserController extends Controller
         ]);
 
         if (!(Hash::check($request->get('oldPass'), Auth::user()->password))) {
-            return redirect()->back()->with("error","Your current password does not matches with the password.");
+            return redirect()->back()
+                ->with("error","Your current password does not matches with the password.");
         }
 
         if(strcmp($request->get('oldPass'), $request->get('newPass')) == 0){
-            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+            return redirect()->back()
+                ->with("error","New Password cannot be same as your current password.");
         }
 
         if(strcmp($request->get('newPass'), $request->get('confPass')) != 0) {
-            return redirect()->back()->with("error","New and Confirmed Password are different.");
+            return redirect()->back()
+                ->with("error","New and Confirmed Password are different.");
         }
 
 
@@ -78,24 +84,38 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('newPass'));
         $user->save();
 
-        return redirect()->back()->with("success","Password successfully changed!");
+        return redirect()->back()
+            ->with("success","Password successfully changed!");
     }
 
     public function showRegister()
     {
-        return view('register');
+        if (Auth::check()) {
+            return redirect()->route('main.page');
+        }
+        else return view('register');
     }
 
     public function registerUser(Request $request)
     {
+
         if(strcmp($request->get('password'), $request->get('confPass')) != 0){
-            return redirect()->back()->with("error","New and Confirmed Password are different.");
+            return redirect()->back()
+                ->with("error","New and Confirmed Password are different.");
         }
 
         if (User::where('username',$request->username)->exists()) {
-            return redirect()->back()->with("error","Username already taken");
+            return redirect()->back()
+                ->with("error","Username already taken");
         };
 
-        return redirect()->route('main.page')->with("success","User sucessfully created!");
+        $user = new User;
+        $user->username = $request->username;
+        $user->password = bcrypt($request->get('password'));
+
+        $user->save();
+
+        return redirect()->route('main.page')
+            ->with("success","User sucessfully created!");
     }
 }
