@@ -21,12 +21,15 @@
             <span class="changeText">Change Password</span>
             <label for="oldPass" class="passLabels">Old Password</label>
             <div class="passError"><span>{{$errors->first('oldPass')}}</span></div>
-            <input type="password" name="oldPass" id="oldPass" placeholder="Insira a sua password antiga" class="passInput" required>
+            <input type="password" name="oldPass" id="oldPass"
+                placeholder="Insira a sua password antiga" class="passInput" required>
             <label for="newPass" class="passLabels">New Password</label>
             <div class="passError"><span>{{$errors->first('newPass')}}</span></div>
-            <input type="password" name="newPass" id="newPass" placeholder="Insira a sua nova password" class="passInput" required>
+            <input type="password" name="newPass" id="newPass"
+                placeholder="Insira a sua nova password" class="passInput" required>
             <label for="confPass" class="passLabels">Confirm Password</label>
-            <input type="password" name="confPass" id="confPass" placeholder="Confirme a nova password" class="passInput" required>
+            <input type="password" name="confPass" id="confPass"
+                placeholder="Confirme a nova password" class="passInput" required>
             <button type="submit" class="passSubmit">Change Password</button>
         </form>
         @if (session('success'))
