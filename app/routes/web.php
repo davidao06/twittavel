@@ -24,3 +24,5 @@ Route::post('/upComment/{id}',[MessageController::class,'upComment'])->name('up.
 Route::post('/downComment/{id}',[MessageController::class,'downComment'])->name('down.comment');
 Route::post("/changePassword",[UserController::class,'changePass'])->name('change.passwordPost');
 Route::get("/changePassword",[UserController::class,'showChangePass'])->name('change.passwordGet');
+Route::get("/register",[UserController::class,'showRegister'])->name('registerGet');
+Route::post("/register",[UserController::class,'registerUser'])->name('registerPost');

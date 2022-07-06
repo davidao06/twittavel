@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -60,12 +61,10 @@ class UserController extends Controller
         ]);
 
         if (!(Hash::check($request->get('oldPass'), Auth::user()->password))) {
-            // The passwords matches
             return redirect()->back()->with("error","Your current password does not matches with the password.");
         }
 
         if(strcmp($request->get('oldPass'), $request->get('newPass')) == 0){
-            // Current password and new password same
             return redirect()->back()->with("error","New Password cannot be same as your current password.");
         }
 
@@ -82,5 +81,21 @@ class UserController extends Controller
         return redirect()->back()->with("success","Password successfully changed!");
     }
 
+    public function showRegister()
+    {
+        return view('register');
+    }
 
+    public function registerUser(Request $request)
+    {
+        if(strcmp($request->get('password'), $request->get('confPass')) != 0){
+            return redirect()->back()->with("error","New and Confirmed Password are different.");
+        }
+
+        if (User::where('username',$request->username)->exists()) {
+            return redirect()->back()->with("error","Username already taken");
+        };
+
+        return redirect()->route('main.page')->with("success","User sucessfully created!");
+    }
 }

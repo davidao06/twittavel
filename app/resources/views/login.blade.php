@@ -24,5 +24,13 @@
             <button type="submit" class="loginSubmit">Login</button>
         </form>
         <div class="loginError"><span>{{$errors->first('failedLogin')}}</span></div>
+        <form action="{{route('registerGet')}}" method="get">
+            <button type="submit" class="registerButton">Not registered? Register here!</button>
+        </form>
+        @if (session('success'))
+        <span class="alertSucess">
+            {{ session('success') }}
+        </span>
+        @endif
     </body>
 </html>
