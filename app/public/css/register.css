@@ -14,7 +14,7 @@ body {
     overflow: hidden;
 }
 
-.formLogin {
+.formregister {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,19 +24,19 @@ body {
     background-color: rgba(3, 35, 142, 0.366);
 }
 
-.loginText {
+.registerText {
     font-size: 2.5rem;
     font-weight: 800;
 }
 
-.loginLabels {
+.registerLabels {
     align-self: flex-start;
     font-size: 1.3rem;
     font-weight: 600;
     margin-top: 2rem;
 }
 
-.loginInput {
+.registerInput {
     width: 100%;
     border:0;
     padding: 0.4rem 0;
@@ -48,7 +48,7 @@ body {
     background-color: rgba(14, 10, 10, 0.17);
 }
 
-.loginSubmit {
+.registerSubmit {
     align-self: flex-start;
     width:50%;
     height: 2rem;
@@ -57,30 +57,9 @@ body {
     border-radius: 6px;
 }
 
-.loginError {
-    align-self: flex-start;
-    color: red;
-    font-weight: 600;
-    letter-spacing: 2px;
-}
-
-.registerButton {
-    border: 0;
-    background-color: transparent;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-}
-
-.registerButton:hover {
-    color: blue;
-    text-decoration: underline;
-    text-decoration-color: blue;
-}
-
-
-.alertSucess {
-    background-color: rgba(119, 252, 74, 0.601);
-    padding: 1rem 1rem;
+.alertError {
+    margin-top: 1rem;
+    background-color: rgba(254, 71, 71, 0.601);
+    padding: 2rem 2rem;
     border-radius: 8px;
 }

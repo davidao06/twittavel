@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-size: calc(8pt + 0.3vw + 0.3vh);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -11,41 +12,80 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: lightblue;
     overflow: hidden;
 }
 
 .topBar {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    align-items: center;
+    width: 95%;
 }
 
 .messageContainer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: rgba(0, 0, 0, 0.734);
+    background-color: rgba(0, 0, 0, 0.209);
     padding: 1rem 1rem;
-    width: 70%;
+    width: 60%;
     overflow:scroll;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
     border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.formText {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+.submitMessage {
+    width: 20%;
 }
 
 .message {
-    background-color: rgba(188, 246, 101, 0.526);
+    background-color: rgba(26, 64, 236, 0.839);
     color: antiquewhite;
-    padding: 2rem 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
+    word-wrap: break-word;
 }
 
-.logoutButton {
+.messageText {
+    margin:1rem 0;
+    width: 90%;
+    margin-left: 2rem;
+}
+
+.messageDate {
+    align-self: flex-end;
+    margin-right: 1rem;
+}
+
+.positionMessage {
+    position: absolute;
+    left: 0.25rem;
+    top: 0.25rem;
+    font-weight: 700;
+}
+
+
+.topButton {
     font-size: 2rem;
-    padding: 0.5rem 0.5rem;
     border-radius: 24px;
+    padding: 0.5rem 0.5rem;
     margin-top: 1rem;
+    border-color: blue;
+}
+
+.topButton:hover {
+    background-color: transparent;
+    box-shadow: 0 0.5rem 1rem 0 lightcyan;
+    transform: translateY(-0.5rem);
 }
 
 .welcomeProfile {
@@ -53,3 +93,29 @@
     margin-top: 1rem;
 
 }
+
+.inputMessage {
+    max-width: 100%;
+    min-height: 2rem;
+    height: 4rem;
+    max-height: 10rem;
+    line-height: 1rem;
+}
+
+.messageButtons {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    background-color: transparent;
+    justify-content:flex-end;
+}
+
+.messageButton {
+    font-weight: 800;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 0.2rem 0.2rem;
+    width: 2rem;
+}
+

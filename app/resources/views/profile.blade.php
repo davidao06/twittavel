@@ -14,32 +14,45 @@
         <div class="profileContainer">
             <div class="topBar">
                 <span class="welcomeProfile">Olá {{Auth::user()->username}}!</span>
-                <form action="{{route('logout.user')}}" method="get">
+                <form action="{{route('change.passwordGet')}}" method="get">
                     @csrf
-                    <input type="submit" value="Logout" class="logoutButton">
+                    <input type="submit" value="ChangePassword" class="topButton">
+                </form>
+                <form action="{{route('logout.user')}}" method="post">
+                    @csrf
+                    <input type="submit" value="Logout" class="topButton">
                 </form>
             </div>
 
             <div class="messageContainer">
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
+                <form action="{{route('add.comment')}}" method="post"
+                class="formText">
+                    @csrf
+                    <textarea name="messageInput" class="inputMessage"></textarea>
+                    <button type="submit" class="submitMessage">Add message</button>
+                </form>
 
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
-
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
-
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
-
-                <div class="message">
-                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet illo dignissimos rem consequuntur, repellendus vero sapiente perferendis odit quia, quisquam, similique cum accusamus nisi voluptas. Expedita harum veritatis illum rem!</span>
-                </div>
+                @foreach (App\Models\Message::where('user_id',Auth::user()->id)->orderBy('position')->get() as $message)
+                    <div class="message">
+                        <div class="messageButtons">
+                            <span class="positionMessage">{{$message->position}}</span>
+                            <form action="{{route('up.comment',['id' => $message->id])}}" method="post">
+                                @csrf
+                                <button type="submit" class="messageButton">&#8593</button>
+                            </form>
+                            <form action="{{route('down.comment',['id' => $message->id])}}" method="post">
+                                @csrf
+                                <button type="submit" class="messageButton">&#8595</button>
+                            </form>
+                            <form action="{{route('del.comment',['id' => $message->id])}}" method="post">
+                                @csrf
+                                <button type="submit" class="messageButton">X</button>
+                            </form>
+                        </div>
+                        <span class="messageText">{{$message->messageText}}</span>
+                        <span class="messageDate">Criada a {{$message->created_at}}</span>
+                    </div>
+                @endforeach
             </div>
         </div>
     </body>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,12 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [UserController::class,'login'])->name('main.page');
 Route::post('/auth', [UserController::class,'auth'])->name('auth.user');
-Route::get('/logout',[UserController::class,'logout'])->name('logout.user');
+Route::post('/logout',[UserController::class,'logout'])->name('logout.user');
+Route::post('/addComment',[MessageController::class,'addComment'])->name('add.comment');
+Route::post('/delComment/{id}',[MessageController::class,'delComment'])->name('del.comment');
+Route::post('/upComment/{id}',[MessageController::class,'upComment'])->name('up.comment');
+Route::post('/downComment/{id}',[MessageController::class,'downComment'])->name('down.comment');
+Route::post("/changePassword",[UserController::class,'changePass'])->name('change.passwordPost');
+Route::get("/changePassword",[UserController::class,'showChangePass'])->name('change.passwordGet');
+Route::get("/register",[UserController::class,'showRegister'])->name('registerGet');
+Route::post("/register",[UserController::class,'registerUser'])->name('registerPost');
